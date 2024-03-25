@@ -47,6 +47,8 @@ public interface CounterRepository extends JpaRepository<ProductDetail, Integer>
             "    INNER JOIN ImagesOrder ON dbo.products.id = ImagesOrder.product_id AND ImagesOrder.ImageOrder = 1\n" +
             "    LEFT JOIN dbo.discounts ON dbo.products.discount_id = dbo.discounts.id\n" +
             "    INNER JOIN SizesOrder ON dbo.sizes.id = SizesOrder.id\n" +
+            "WHERE \n" +
+            "    dbo.products.status = 0\n" +
             "GROUP BY \n" +
             "    dbo.product_details.id,\n" +
             "    dbo.products.name,\n" +
