@@ -20,17 +20,17 @@ function addCounterPage() {
 
 function renderButtonOrderTab(orderTabId) {
     var buttonOrderTab = "<button class=\"btn btn-add-order\" data-order-tab-id='" + orderTabId + "'>Hóa đơn " + orderTabId + "</button>";
-
     $("#listCounter").append(buttonOrderTab);
 
     // Khi click vào button
-    $('.btn-add-order').click(function () {
+    $('body').on('click', '.btn-add-order', function () {
         // Lấy giá trị của thuộc tính 'data-order-tab-id'
         currentTab = $(this).data('order-tab-id');
 
         // Lưu dữ liệu trước khi chuyển tab
         if (preTab != 0) {
             saveData(preTab);
+            listProductCart = [];
         }
 
         // Lấy dữ liệu cho tab mới
@@ -44,9 +44,8 @@ function renderButtonOrderTab(orderTabId) {
         // Thêm class 'btn-active' cho button được click
         $(this).addClass('btn-active');
     });
-
     // Kích hoạt sự kiện click cho nút mới thêm vào
-    $('.btn-add-order[data-order-tab-id="' + orderTabId + '"]').click();
+    $('.btn-add-order[data-order-tab-id="' + orderTabId + '"]').trigger('click');
 }
 
 var sttCounter = 1;
